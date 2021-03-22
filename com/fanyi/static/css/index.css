@@ -1,0 +1,23 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+#top{
+    height:100px;
+    margin-top:10px;
+    background:red;
+}
+
+#content{
+    background:green;
+}
+
+#bottom{
+    height:200px;
+    width:100%;
+    background:blue;
+    position:absolute;
+    bottom:0;
+    margin-bottom:10px;
+}
