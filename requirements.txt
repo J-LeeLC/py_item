@@ -52,3 +52,4 @@ Werkzeug==1.0.1
 livereload~=2.6.3
 pydarn~=2.0.1
 Markdown~=3.3.4
+WTForms~=2.3.3

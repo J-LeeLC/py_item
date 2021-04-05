@@ -1,3 +1,4 @@
+{% import 'bootstrap/wtf.html' as wtf %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,26 @@
     <title>登录</title>
 </head>
 <body>
-    <h1>请求方式为：{{method}}</h1>
+    <h1>Login</h1>
     <form method="post">
+<!--        <div>-->
+<!--            <input type="text" name="username" placeholder="user name" />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <input type="password" name="password" placeholder="password" />-->
+<!--        </div>-->
+<!--        <input type="submit" />-->
+<!--        {{ form.username.label }}-->
+<!--        {{ form.username() }}-->
+<!--        {{ form.password.label }}-->
+<!--        {{ form.password() }}-->
+<!--        {{ form.submit() }}-->
         <div>
-            <input type="text" name="username" placeholder="user name" />
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+            {{ wtf.quick_form(form) }}
         </div>
-        <div>
-            <input type="password" name="password" placeholder="password" />
-        </div>
-        <input type="submit" />
     </form>
 
 </body>

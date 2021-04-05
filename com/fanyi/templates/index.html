@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="description" content="在线工具网站">
-    <meta name="keywords" content="翻译">
-    <meta name="author" content="fanny">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>{{name}}</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/tree.ico') }}" type="image/x-icon" />
-</head>
-<body>
-{% autoescape false %}
-    {{ title|md|safe }}
-    {{ body|md|safe }}
-    {{read_md('instance.md')|md|safe}}
-{% endautoescape %}
-{% set links=[{'lable':'首页', 'href':url_for('.index')},{'lable':'文件上传', 'href':url_for('.upload')}] %}
-<nav>
-    {% for link in links %}
-        {% if not loop.first %}|{% endif %}
-    <!--    {% if loop.index is odd%}|{% endif %}-->
-        {% if link is current_link %}
-            <a href="#">{{ link.lable }}</a>
-        {% else %}
-            <a href="{{ link.href }}">{{ link.lable }}</a>
-        {% endif %}
-    {% endfor %}
-</nav>
-</body>
-</html>
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    welcome
+{% endblock title %}
+{% block navbar %}
+    {{ nav.top.render() }}
+{% endblock navbar %}
+{% block content %}
+    {% autoescape false %}
+        {{ title|md|safe }}
+        {{ body|md|safe }}
+        {{read_md('doc/instance.md')|md|safe}}
+    {% endautoescape %}
+{% endblock content %}
