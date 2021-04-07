@@ -34,7 +34,9 @@ def create_app():
 
     nav.register_element('top', Navbar(u'Flask入门', View(u'主页', 'index'), View(u'用户', 'user', user_id='aaa')
                                        , View(u'登录', 'login'), View(u'注册', 'register'), View(u'sha256加密', 'sha256'),
-                                       View(u'上传文件', 'upload')))
+                                       View(u'上传文件', 'upload'), View(u'百度SIGN', 'sign_str', qStr='%E4%BC%A0%E6%84%9F'
+                                                                                                 '%E5%99%A8%E7%BD%91'
+                                                                                                 '%E7%BB%9C')))
 
     init_views(app)
     db.init_app(app)

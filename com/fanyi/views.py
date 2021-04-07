@@ -3,6 +3,7 @@ import os
 import time
 from functools import reduce
 import hashlib
+import js2py
 
 from flask import render_template, redirect, make_response, flash
 from flask_nav.elements import *
@@ -68,6 +69,21 @@ def init_views(app):
             f.save(os.path.join(upload_path, filename))
             return redirect(url_for('upload'))
         return render_template('upload.html')
+
+    @app.route('/translate/sign?qStr=<qStr>')
+    def sign_str(qStr):
+        base_path = os.path.abspath(os.path.dirname(__file__))
+        js_path = os.path.join(base_path, r'static/js/sign.js')
+        if qStr.find("%@F") != -1:
+            q = qStr.replace("%@F", "/")
+        else:
+            q = qStr
+        with open(js_path, 'r', encoding='utf-8') as f:
+            content = js2py.EvalJs()  # 实例化解析js对象
+            content.execute(f.read())  # js转python代码
+            n = content.pro(q)
+            sign_c = content.e(n, "320305.131321201")
+            return sign_c
 
     @app.errorhandler(404)
     def page_not_found(error):

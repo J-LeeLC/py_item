@@ -26,7 +26,7 @@ def sign_str(qStr):
 
 
 with app.test_request_context():
-    print(url_for('sign_str', qStr='传感器网络是由大量部署在作用区域内的、具有无线通信与计算能力的微小传感器节点通过自组织方式构成的能根据环境自主完成指定任务的分布式智能化网络系统。'))
+    print(url_for('sign_str', qStr='传感器网络'))
 
 
 if __name__ == '__main__':
