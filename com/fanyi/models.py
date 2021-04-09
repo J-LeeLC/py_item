@@ -9,7 +9,7 @@ class Role(db.Model):
 
     @staticmethod
     def seed():
-        db.session.add_all(map(lambda r: Role(r), ['Guests', 'Administrators']))
+        db.session.add_all(map(lambda r: Role(name=r), ['Guests', 'Administrators']))
         db.session.commit()
 
 
@@ -21,8 +21,8 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @staticmethod
-    def on_created(target, value, initiator):
+    def on_created(target, value, oldvalue, initiator):
         target.role = Role.query.filter_by(name='Guests').first()
 
 
-db.event.listen(User.name, 'append', User.on_created)
+db.event.listen(User.name, 'set', User.on_created)
